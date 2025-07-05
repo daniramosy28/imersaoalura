@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: fastapi_api
+    volumes:
+      # Monta o diretório atual no contêiner. Isso tem duas funções importantes:
+      # 1. Permite que o --reload (definido no Dockerfile) funcione, recarregando a API a cada mudança no código.
+      # 2. Persiste o arquivo do banco de dados 'escola.db' na sua máquina local, evitando a perda de dados.
+      - .:/app
+    ports:
+      - "8080:8080"
+    
